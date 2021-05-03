@@ -2,24 +2,47 @@
 
 namespace Tests\Unit;
 
-use App\Services\RomanNumeralConverter;
-use PHPUnit\Framework\TestCase;
+use App\Services\IntegerConverter\Converters\RomanNumeral;
 
-class RomanNumeralTest extends TestCase
+/**
+ * Unit test for integer -> roman numeral converter
+ * 
+ * @category UnitTest
+ * @package  RomanNumeralsApi
+ * @author   Ash Phoenix <ashleyphoenix@ymail.com>
+ * @license  https://opensource.org/licenses/GPL-3.0 GNU Public License
+ * @link     https://github.com/netsells/roman-numerals-api
+ */
+class RomanNumeralTest extends \PHPUnit\Framework\TestCase
 {
-    private RomanNumeralConverter $converter;
+    /**
+     * The converter to test
+     * 
+     * @var RomanNumeral
+     */
+    private RomanNumeral $converter;
 
+    /**
+     * Sets up the model
+     * 
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->converter = new RomanNumeralConverter();
+        $this->converter = new RomanNumeral();
     }
 
+    /**
+     * A function that tests converting integers to roman numerals
+     * 
+     * @return void
+     */
     public function testConvertsIntegersToRomanNumerals(): void
     {
         // Test the basic conversions
-        $toTest = [
+        $to_test = [
             'I' => 1,
             'IV' => 4,
             'V' => 5,
@@ -35,8 +58,8 @@ class RomanNumeralTest extends TestCase
             'M' => 1000,
         ];
 
-        foreach ($toTest as $returnValue => $integer) {
-            $this->assertEquals($returnValue, $this->converter->convertInteger($integer));
+        foreach ($to_test as $return_value => $integer) {
+            $this->assertEquals($return_value, $this->converter->convertInteger($integer));
         }
 
         // Test more unique integers
