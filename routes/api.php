@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\IntegerConversionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/conversion/latest/{type?}', [IntegerConversionController::class, 'latest']);
+Route::get('/conversion/popular/{type?}', [IntegerConversionController::class, 'popular']);
+Route::post('/conversion/convert', [IntegerConversionController::class, 'store']);
